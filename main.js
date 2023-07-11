@@ -1,6 +1,6 @@
 
 let correct;
-let seconds = 10;
+let seconds = 30;
 let correctAnswer = 0;
 let incorrectAnswer = 0;
 function getElement(id) {
@@ -53,23 +53,26 @@ function check() {
 }
 function finish() {
   clearInterval(checkInterval);
+  getElement("alert").style.display = "block";
+  getElement("card").style.display = "none";
+  getElement("alertscore").innerHTML = correctAnswer;
   let percentage = Math.round(correctAnswer / (incorrectAnswer + correctAnswer) * 100);
   let resultForAnswers;
-  if(isNaN(percentage)){
+  if (isNaN(percentage)) {
     resultForAnswers = "դուք ճիշտ պատասխան չունեք"
-  }else{
+  } else {
     if (percentage >= 75 && percentage < 95) {
       resultForAnswers = "դուք ցուցաբերել եք լավ արդյունք"
-    }else if(percentage >=95){
-        resultForAnswers = "դուք ցուցաբերել եք գերազանց արդյունք"
-    }else if (percentage <= 75) {
+    } else if (percentage >= 95) {
+      resultForAnswers = "դուք ցուցաբերել եք գերազանց արդյունք"
+    } else if (percentage <= 75) {
       resultForAnswers = "դուք ցուցաբերել եք վատ արդյունք"
     }
   }
-  // else if (){
-
-  // }
-  getElement("alertaccuracy").innerHTML = `${resultForAnswers}`;
+  getElement("alertscore1").innerHTML = resultForAnswers;
+}
+function refresh() {
+  location = location;
 }
 
 let checkInterval = setInterval(check, 50);
